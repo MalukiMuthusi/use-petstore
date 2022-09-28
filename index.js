@@ -1,10 +1,19 @@
 var OpenApiPetstore = require("open_api_petstore");
 
-var api = new OpenApiPetstore.AnotherFakeApi();
-var client = new OpenApiPetstore.Client(); // {Client} client model
-api.call123testSpecialTags(client).then(
+var defaultClient = OpenApiPetstore.ApiClient.instance;
+// Configure OAuth2 access token for authorization: petstore_auth
+var petstore_auth = defaultClient.authentications["petstore_auth"];
+petstore_auth.accessToken = "YOUR ACCESS TOKEN";
+
+var api = new OpenApiPetstore.PetApi();
+var pet = new OpenApiPetstore.Pet(); // {Pet} Pet object that needs to be added to the store
+
+let tags = ["tag1"];
+
+api.findPetsByTags(tags).then(
   function (data) {
-    console.log("API called successfully. Returned data: " + data);
+    console.log("API called successfully. Returned data: ");
+    console.log(data);
   },
   function (error) {
     console.error(error);
