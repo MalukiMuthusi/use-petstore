@@ -19,3 +19,13 @@ api.findPetsByTags(tags).then(
     console.error(error);
   }
 );
+
+api.getPetById(1).then(
+  function (data) {
+    console.log("API called successfully. Returned data: ");
+    console.log(data);
+  },
+  function (error) {
+    console.error(error);
+  }
+);
